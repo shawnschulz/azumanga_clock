@@ -17,6 +17,8 @@ you can configure your system to run it on startup as needed. i have no clue if 
 
 to run with i3 config (use at your own risk!)
 
+--------------------------------------------------------
+
 the python script needs access to the gif in this repo, so change line 30 to path to wherever your repo is (i might change this later to be more user friendly)
 
 add the python script to your bin:
