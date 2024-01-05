@@ -27,7 +27,7 @@ class azumangaClock:
         win.connect("destroy", Gtk.main_quit)
         self.overlay = Gtk.Overlay()
         win.add(self.overlay)
-        self.img = Gtk.Image.new_from_file('./azumanga_clock.gif')
+        self.img = Gtk.Image.new_from_file('/home/shawn/Downloads/azumanga_clock.gif')
         self.overlay.add(self.img)
         self.label=Gtk.Label()
         time_text = time.strftime('         今日は\n        %A\n        %H:%M:%S')
@@ -40,6 +40,8 @@ class azumangaClock:
             greeting_text = "      こんにちは！\n"
         if hour_of_day > 17 and hour_of_day <= 24:
             greeting_text = "      こんばんは！\n"
+        else:
+            greeting_text = "         よー.\n" 
         self.label.set_markup("<span size='5450'>{}{}</span>".format(greeting_text,time_text))
         self.label.set_line_wrap(True)
 #self.label.set_justify(Gtk.Justification.LEFT)
@@ -72,6 +74,8 @@ class azumangaClock:
             greeting_text = "      こんにちは！\n"
         if hour_of_day > 17 and hour_of_day <= 24:
             greeting_text = "      こんばんは！\n"
+        else:
+            greeting_text = "         よー.\n" 
         self.label.set_markup("<span size='5450'>{}{}</span>".format(greeting_text,time_text))
         return True
 
