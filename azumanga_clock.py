@@ -27,7 +27,7 @@ class azumangaClock:
         win.connect("destroy", Gtk.main_quit)
         self.overlay = Gtk.Overlay()
         win.add(self.overlay)
-        self.img = Gtk.Image.new_from_file('/home/shawn/Downloads/azumanga_clock.gif')
+        self.img = Gtk.Image.new_from_file('./azumanga_clock.gif')
         self.overlay.add(self.img)
         self.label=Gtk.Label()
         time_text = time.strftime('         今日は\n        %A\n        %H:%M:%S')
