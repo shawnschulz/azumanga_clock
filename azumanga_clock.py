@@ -19,8 +19,22 @@ def get_screen_size(display):
 
     return x1 - x0, y1 - y0
 
-# example use
-print(get_screen_size(Gdk.Display.get_default()))
+print(int(time.strftime('%H')))
+def get_clock_text():
+    time_text = time.strftime('         今日は:\n      %A\n    %H:%M:%S')
+    hour_of_day = int(time.strftime('%H'))
+    if hour_of_day >= 5 and hour_of_day < 12:
+        greeting_text = "       おはよう！\n"
+    elif hour_of_day < 5 and hour_of_day >= 0:
+        greeting_text = "       おやすみ！\n"
+    elif hour_of_day >= 12 and hour_of_day <= 17:
+        greeting_text = "      こんにちは！\n"
+    elif hour_of_day > 17 and hour_of_day <= 24:
+        greeting_text = "      こんばんは！\n"
+    else:
+        greeting_text = "            よー.\n" 
+    return("<span size='5500'>{}</span><span size='7000'>{}</span>".format(greeting_text,time_text))
+
 class azumangaClock:
     def __init__(self):
         win = Gtk.Window()
@@ -30,19 +44,7 @@ class azumangaClock:
         self.img = Gtk.Image.new_from_file('/home/shawn/Downloads/azumanga_clock.gif')
         self.overlay.add(self.img)
         self.label=Gtk.Label()
-        time_text = time.strftime('         今日は\n        %A\n        %H:%M:%S')
-        hour_of_day = int(time.strftime('%H'))
-        if hour_of_day >= 5 and hour_of_day < 12:
-            greeting_text = "      おはよう！\n"
-        if hour_of_day < 5 and hour_of_day > 0:
-            greeting_text = "      おやすみ！\n"
-        if hour_of_day >= 12 and hour_of_day <= 17:
-            greeting_text = "      こんにちは！\n"
-        if hour_of_day > 17 and hour_of_day <= 24:
-            greeting_text = "      こんばんは！\n"
-        else:
-            greeting_text = "         よー.\n" 
-        self.label.set_markup("<span size='5450'>{}{}</span>".format(greeting_text,time_text))
+        self.label.set_markup(get_clock_text())
         self.label.set_line_wrap(True)
 #self.label.set_justify(Gtk.Justification.LEFT)
         self.label.set_valign(Gtk.Align.CENTER)
@@ -64,19 +66,7 @@ class azumangaClock:
         win.show_all()
     
     def update(self):
-        time_text = time.strftime('         今日は\n        %A\n        %H:%M:%S')
-        hour_of_day = int(time.strftime('%H'))
-        if hour_of_day >= 5 and hour_of_day < 12:
-            greeting_text = "      おはよう！\n"
-        if hour_of_day < 5 and hour_of_day > 0:
-            greeting_text = "      おやすみ！\n"
-        if hour_of_day >= 12 and hour_of_day <= 17:
-            greeting_text = "      こんにちは！\n"
-        if hour_of_day > 17 and hour_of_day <= 24:
-            greeting_text = "      こんばんは！\n"
-        else:
-            greeting_text = "         よー.\n" 
-        self.label.set_markup("<span size='5450'>{}{}</span>".format(greeting_text,time_text))
+        self.label.set_markup(get_clock_text())
         return True
 
 def main():
